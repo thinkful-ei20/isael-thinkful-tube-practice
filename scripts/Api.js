@@ -9,17 +9,18 @@ const api = (function(){
       q: searchTerm
     };
     
-    $.getJSON(BASE_URL, query, (response) => {
-      response = response.items.map(item => {
-        return {
-          id: item.id,
-          title: item.snippet.title,
-          thumbnail: item.snippet.thumbnails.medium.url,
-        };
-      });
-      console.log(callback(response));
-      callback(response);
+    $.getJSON(BASE_URL, query, decorateResponse);
+  };
+
+  const decorateResponse = function (response, callback){
+    response = response.items.map(item => {
+      return {
+        id: item.id,
+        title: item.snippet.title,
+        thumbnail: item.snippet.thumbnails.medium.url,
+      };
     });
+    callback(response);
   };
 
   return {

@@ -5,6 +5,7 @@ const videoList = (function(){
     return `
     <li>
     <a href=https://www.youtube.com/watch?v=${video.id.videoId ? video.id.videoId : ''}>
+      <h1>${video.title}</h1>
       <img src='${video.thumbnail}' />
     </a>
     </li>
@@ -21,13 +22,13 @@ const videoList = (function(){
       e.preventDefault();
       let searchTerm = $('#search-term').val();
       $('#search-term').val('');
-      api.fetchVideos(searchTerm, (response) => {
-        store.setVideos(response);
-        render();
-      });
-      //console.log("ran");
-      //render();
+      api.fetchVideos(searchTerm, fetchVideosCallback);
     });
+  };
+
+  const fetchVideosCallback = function (response){
+    store.setVideos(response);
+    render();
   };
 
   const bindEventListeners = function(){
