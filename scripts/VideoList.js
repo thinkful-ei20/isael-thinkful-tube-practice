@@ -1,4 +1,5 @@
-'use strict';
+'use strict'; 
+/* global api, store*/
 const videoList = (function(){
 
   const generateListItem = function (video){
