@@ -24,12 +24,12 @@ const videoList = (function(){
       let searchTerm = $('#search-term').val();
       $('#search-term').val('');
       api.fetchVideos(searchTerm, fetchVideosCallback);
-      render();
     });
   };
 
   const fetchVideosCallback = function (response){
     store.setVideos(response);
+    render();
   };
 
   const bindEventListeners = function(){

@@ -9,19 +9,19 @@ const api = (function(){
       q: searchTerm
     };
     
-    $.getJSON(BASE_URL, query, decorateResponse);
+    $.getJSON(BASE_URL, query, (response) => {
+      response = response.items.map(item => {
+        return {
+          id: item.id,
+          title: item.snippet.title,
+          thumbnail: item.snippet.thumbnails.medium.url,
+        };
+      });
+      callback(response);
+    });
   };
 
-  const decorateResponse = function (response, callback){
-    response = response.items.map(item => {
-      return {
-        id: item.id,
-        title: item.snippet.title,
-        thumbnail: item.snippet.thumbnails.medium.url,
-      };
-    });
-    callback(response);
-  };
+  
 
   return {
     fetchVideos,
