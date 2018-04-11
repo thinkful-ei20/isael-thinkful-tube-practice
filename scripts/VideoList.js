@@ -6,7 +6,9 @@ const videoList = (function(){
     return `
     <li>
     <a href=https://www.youtube.com/watch?v=${video.id.videoId ? video.id.videoId : ''}>
+      <div>
       <h1>${video.title}</h1>
+      </div>
       <img src='${video.thumbnail}' />
     </a>
     </li>
